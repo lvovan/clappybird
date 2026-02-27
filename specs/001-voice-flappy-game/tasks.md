@@ -37,7 +37,7 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [x] T006 [P] Define all game constants from data-model.md constants table (GAME_WIDTH=360, GAME_HEIGHT=640, BIRD_X=80, BIRD_SIZE=32, BIRD_HITBOX_SHRINK=0.8, GRAVITY=0.0009, FLAP_IMPULSE=-0.45, HOVER_DECEL=-0.0013, MAX_FALL_SPEED=0.6, SCROLL_SPEED=0.15, GAP_HEIGHT=140, OBSTACLE_WIDTH=52, MIN_OBSTACLE_SPACING=200, MIN_GAP_MARGIN=80, COIN_RADIUS=12, PHYSICS_TIMESTEP=16.667, MAX_FRAME_DELTA=250, MAX_PHYSICS_STEPS=5, CALIBRATION_DURATION=1500, VOLUME_SMOOTHING=0.3) in src/models/constants.ts
+- [x] T006 [P] Define all game constants from data-model.md constants table (GAME_WIDTH=360, GAME_HEIGHT=640, BIRD_X=80, BIRD_SIZE=32, BIRD_HITBOX_SHRINK=0.8, GRAVITY=0.00075, FLAP_IMPULSE=-0.1125, HOVER_DECEL=-0.0013, MAX_FALL_SPEED=0.375, SCROLL_SPEED=0.075, GAP_HEIGHT=140, OBSTACLE_WIDTH=52, MIN_OBSTACLE_SPACING=400, MIN_GAP_MARGIN=96, COIN_RADIUS=12, PHYSICS_TIMESTEP=16.667, MAX_FRAME_DELTA=250, MAX_PHYSICS_STEPS=5, CALIBRATION_DURATION=1500, VOLUME_SMOOTHING=0.3) in src/models/constants.ts
 - [x] T007 [P] Define TypeScript types and interfaces for all entities (Bird, Obstacle, Coin, GameSession, AudioInput) and union types (GameStatus: 'idle'|'calibrating'|'playing'|'paused'|'game-over', AudioPermission: 'prompt'|'granted'|'denied'|'unavailable', WallRect) in src/models/types.ts
 - [x] T008 [P] Implement bird factory (createBird returning initial Bird state at BIRD_X) and update helper (updateBirdPosition applying velocity × dt, clamping y to game bounds) in src/models/bird.ts
 - [x] T009 [P] Implement obstacle factory (createObstacle with randomized gapCenterY within MIN_GAP_MARGIN bounds), wall-rect derivation (getWallRects returning top and bottom WallRect), scroll update (moveObstacle subtracting scrollSpeed × dt), and off-screen check in src/models/obstacle.ts
@@ -112,7 +112,9 @@
 
 ### Implementation for User Story 4
 
-- [x] T029 [P] [US4] Implement StartScreen component: game title ("Screamy Bird"), brief voice-control instructions ("Make noise to fly! Stay quiet to fall."), prominent Start button that triggers startGame action (AudioContext creation in sync click handler per R1.4), styled as centered overlay in src/components/screens/StartScreen.tsx with src/components/screens/StartScreen.module.css
+- [x] T029 [P] [US4] Implement StartScreen component: game title ("Clappy Bird"), brief voice-control instructions ("Clap to fly! Stay quiet to fall."), prominent Start button that triggers startGame action (AudioContext creation in sync click handler per R1.4), styled as centered overlay in src/components/screens/StartScreen.tsx with src/components/screens/StartScreen.module.css
+- [x] T036 [US4] Update calibration overlay text to display "Silence please, I'm calibrating your microphone!" during calibrating state in src/App.tsx
+- [x] T037 [US4] Add a "Clap to fly! 👏" visual indicator overlay that appears for 3 seconds when game transitions to 'playing' state, with fade-out animation, in src/App.tsx
 - [x] T030 [P] [US4] Implement GameOverScreen component: "Game Over" heading, final score (coins collected) displayed prominently, Play Again button triggering restartGame action, styled as centered overlay in src/components/screens/GameOverScreen.tsx with src/components/screens/GameOverScreen.module.css
 - [x] T031 [US4] Replace minimal inline start/game-over controls in App with StartScreen (render when gameStatus === 'idle') and GameOverScreen (render when gameStatus === 'game-over'), ensure screen transitions are immediate with no extra animation in src/App.tsx
 

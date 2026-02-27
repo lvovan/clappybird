@@ -5,10 +5,28 @@ import { VolumeIndicator } from './components/ui/VolumeIndicator'
 import { FallbackNotice } from './components/ui/FallbackNotice'
 import { StartScreen } from './components/screens/StartScreen'
 import { GameOverScreen } from './components/screens/GameOverScreen'
+import { useEffect, useState } from 'react'
 
 function GameScreen() {
   const { gameStatus, score, isFallbackMode, startGame, restartGame } =
     useGameContext()
+
+  const [showClapHint, setShowClapHint] = useState(false)
+
+  // Show "Clap to fly!" hint for 3 seconds when gameplay starts
+  useEffect(() => {
+    if (gameStatus === 'playing') {
+      setShowClapHint(true)
+      const timer = setTimeout(() => {
+        setShowClapHint(false)
+      }, 3000)
+      return () => {
+        clearTimeout(timer)
+      }
+    } else {
+      setShowClapHint(false)
+    }
+  }, [gameStatus])
 
   return (
     <div className="game-container">
@@ -50,7 +68,35 @@ function GameScreen() {
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>
               {isFallbackMode
                 ? 'Microphone unavailable — tap/click to flap!'
-                : 'Stay quiet for a moment...'}
+                : 'Silence please, I\u2019m calibrating your microphone! \ud83e\udd2b'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Clap to fly hint */}
+      {showClapHint && gameStatus === 'playing' && (
+        <div
+          className="game-overlay"
+          style={{ pointerEvents: 'none', animation: 'fadeOut 1s ease 2s forwards' }}
+        >
+          <div
+            style={{
+              background: 'rgba(0,0,0,0.5)',
+              borderRadius: '16px',
+              padding: '16px 28px',
+              textAlign: 'center',
+            }}
+          >
+            <p
+              style={{
+                color: '#fff',
+                fontSize: '24px',
+                fontWeight: 700,
+                margin: 0,
+              }}
+            >
+              Clap to fly! 👏
             </p>
           </div>
         </div>

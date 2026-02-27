@@ -17,13 +17,14 @@ A player opens the game on their phone or PC browser, grants microphone access, 
 
 **Acceptance Scenarios**:
 
-1. **Given** the game is loaded and microphone permission is granted, **When** the player taps/clicks "Start", **Then** the bird appears on screen and begins falling under gravity.
-2. **Given** the game is running, **When** the player makes a loud sound into the microphone, **Then** the bird moves upward with a visible flap animation.
-3. **Given** the game is running, **When** the player is silent, **Then** the bird falls with increasing downward velocity (accelerated by gravity).
-4. **Given** the game is running, **When** the player holds a steady moderate volume, **Then** the bird approximately maintains its current altitude.
-5. **Given** walls are scrolling from right to left, **When** the bird passes through a gap, **Then** the gap position is visibly randomized compared to the previous obstacle.
-6. **Given** a spinning coin is visible in the center of a gap, **When** the bird passes through the coin, **Then** the score increments by 1 and the coin disappears.
-7. **Given** the bird is in flight, **When** the bird collides with the top wall, the bottom wall, or the ground, **Then** the game ends immediately and the final score is displayed.
+1. **Given** the game is loaded and microphone permission is granted, **When** the player taps/clicks "Start", **Then** a calibration phase begins displaying "Silence please, I'm calibrating your microphone!" and the bird appears on screen once calibration completes.
+2. **Given** the game transitions from calibrating to playing, **When** gameplay begins, **Then** a brief visual indicator ("Clap to fly! 👏") is shown on-screen for a few seconds to prompt the player.
+3. **Given** the game is running, **When** the player claps or makes a loud sound into the microphone, **Then** the bird moves upward with a visible flap animation.
+4. **Given** the game is running, **When** the player is silent, **Then** the bird falls with increasing downward velocity (accelerated by gravity).
+5. **Given** the game is running, **When** the player holds a steady moderate volume, **Then** the bird approximately maintains its current altitude.
+6. **Given** walls are scrolling from right to left, **When** the bird passes through a gap, **Then** the gap position is visibly randomized compared to the previous obstacle.
+7. **Given** a spinning coin is visible in the center of a gap, **When** the bird passes through the coin, **Then** the score increments by 1 and the coin disappears.
+8. **Given** the bird is in flight, **When** the bird collides with the top wall, the bottom wall, or the ground, **Then** the game ends immediately and the final score is displayed.
 
 ---
 
@@ -97,7 +98,7 @@ A player opens the game and sees a start screen with the game title, a brief ins
 - **FR-005**: A steady moderate volume (around threshold) MUST approximately counterbalance gravity, allowing the bird to hover.
 - **FR-006**: Gravity MUST be simulated at 0.6× earth gravity: the bird's downward velocity increases over time when no upward force is applied (constant gravitational acceleration), but at a reduced rate to improve playability.
 - **FR-007**: Obstacles MUST consist of paired top and bottom walls with a vertical gap between them, scrolling continuously from right to left at a consistent speed.
-- **FR-008**: The vertical position of each obstacle gap MUST be randomized within playable bounds.
+- **FR-008**: The vertical position of each obstacle gap MUST be randomized within playable bounds, never positioned in the top or bottom 15% of the screen.
 - **FR-009**: A spinning coin MUST be placed at the vertical center of each obstacle gap.
 - **FR-010**: When the bird overlaps a coin, the coin MUST disappear and the score MUST increment by 1.
 - **FR-011**: Collision between the bird and any wall (top wall, bottom wall, or ground boundary) MUST immediately end the game.
@@ -107,7 +108,7 @@ A player opens the game and sees a start screen with the game title, a brief ins
 - **FR-015**: The game MUST display a game-over screen showing the final score and a "Play Again" button when the game ends.
 - **FR-016**: The game MUST be fully playable on both smartphones (portrait, touch) and desktop PCs (landscape, mouse/keyboard) without horizontal scrolling on viewports 320 px wide and above.
 - **FR-017**: The game MUST pause automatically when the browser tab loses focus and resume when focus returns.
-- **FR-018**: Obstacles MUST maintain a minimum spacing distance so the player always has a reactable window between consecutive gaps.
+- **FR-018**: Obstacles MUST maintain a minimum spacing distance of at least 400 px so the player always has a reactable window between consecutive gaps.
 - **FR-019**: The score display MUST be visible at all times during active gameplay.
 
 ### Key Entities

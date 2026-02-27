@@ -98,3 +98,13 @@ body {
 .game-btn-secondary {
   background: linear-gradient(135deg, #2196f3, #1976d2);
 }
+
+/* Fade-out animation for transient hint overlays */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

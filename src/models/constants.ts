@@ -8,17 +8,17 @@ export const BIRD_SIZE = 32
 export const BIRD_HITBOX_SHRINK = 0.8
 
 // Physics
-export const GRAVITY = 0.0009 // px/ms² downward acceleration (0.6× earth gravity)
-export const FLAP_IMPULSE = -0.45 // px/ms upward velocity on loud sound
+export const GRAVITY = 0.00075 // px/ms² downward acceleration (halved)
+export const FLAP_IMPULSE = -0.1125 // px/ms upward velocity on loud sound (halved again)
 export const HOVER_DECEL = -0.0013 // px/ms² upward acceleration on moderate volume
-export const MAX_FALL_SPEED = 0.6 // px/ms terminal velocity
+export const MAX_FALL_SPEED = 0.375 // px/ms terminal velocity (halved)
 
 // Obstacles
-export const SCROLL_SPEED = 0.15 // px/ms horizontal obstacle speed
+export const SCROLL_SPEED = 0.075 // px/ms horizontal obstacle speed (halved)
 export const GAP_HEIGHT = 140 // px vertical gap between top and bottom walls
 export const OBSTACLE_WIDTH = 52 // px horizontal wall thickness
-export const MIN_OBSTACLE_SPACING = 200 // px minimum distance between consecutive obstacles
-export const MIN_GAP_MARGIN = 80 // px minimum distance from gap center to screen edges
+export const MIN_OBSTACLE_SPACING = 400 // px minimum distance between consecutive obstacles (doubled)
+export const MIN_GAP_MARGIN = 96 // px minimum distance from gap center to screen edges (15% of 640)
 
 // Coins
 export const COIN_RADIUS = 12 // px collision and visual radius
