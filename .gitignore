@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# IDE
+.idea/
+
+# Vite
+*.local
+
+# Testing
+coverage/
+
+# Python (specify tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
