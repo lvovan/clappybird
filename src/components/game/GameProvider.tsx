@@ -5,6 +5,7 @@ import {
   useAudioInput,
   type UseAudioInputReturn,
 } from '../../hooks/useAudioInput'
+import { trackEvent, setTag } from '../../services/clarityService'
 
 interface GameContextValue {
   gameStatus: GameStatus
@@ -53,6 +54,8 @@ export function GameProvider({ children }: GameProviderProps) {
   const audio = useAudioInput()
 
   const startGame = useCallback(async () => {
+    trackEvent('game_started')
+
     if (audio.isFallbackMode) {
       // No mic: skip calibration, go directly to playing
       startPlaying()
@@ -66,6 +69,7 @@ export function GameProvider({ children }: GameProviderProps) {
       startCalibrating()
       // Run calibration
       await audio.calibrate()
+      trackEvent('calibration_complete')
       startPlaying()
     } else {
       // Permission denied or unavailable — fallback mode
@@ -78,6 +82,12 @@ export function GameProvider({ children }: GameProviderProps) {
     restart()
   }, [audio, restart])
 
+  const handleGameOver = useCallback(() => {
+    trackEvent('game_over')
+    setTag('final_score', String(score))
+    gameOver()
+  }, [gameOver, score])
+
   const value: GameContextValue = {
     gameStatus,
     score,
@@ -88,7 +98,7 @@ export function GameProvider({ children }: GameProviderProps) {
     restartGame,
     pause,
     unpause,
-    gameOver,
+    gameOver: handleGameOver,
     incrementScore,
     startPlaying,
   }

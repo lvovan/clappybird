@@ -3,13 +3,17 @@ import { GameCanvas } from './components/game/GameCanvas'
 import { ScoreDisplay } from './components/ui/ScoreDisplay'
 import { VolumeIndicator } from './components/ui/VolumeIndicator'
 import { FallbackNotice } from './components/ui/FallbackNotice'
+import { UpdateNotification } from './components/ui/UpdateNotification'
 import { StartScreen } from './components/screens/StartScreen'
 import { GameOverScreen } from './components/screens/GameOverScreen'
+import { useVersionCheck } from './hooks/useVersionCheck'
 import { useEffect, useState } from 'react'
 
 function GameScreen() {
   const { gameStatus, score, isFallbackMode, startGame, restartGame } =
     useGameContext()
+
+  const { updateAvailable, dismissed, dismiss, refresh } = useVersionCheck()
 
   const [showClapHint, setShowClapHint] = useState(false)
 
@@ -34,6 +38,11 @@ function GameScreen() {
       <ScoreDisplay />
       <VolumeIndicator />
       <FallbackNotice />
+
+      {/* Version update notification */}
+      {updateAvailable && !dismissed && (
+        <UpdateNotification onRefresh={refresh} onDismiss={dismiss} />
+      )}
 
       {/* Start Screen */}
       {gameStatus === 'idle' && (
