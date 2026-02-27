@@ -19,6 +19,9 @@ export function StartScreen({ onStart }: StartScreenProps) {
         <br />
         Dodge pipes. Collect coins.
       </p>
+      <p className={styles.copyright}>
+        ©️ 2026 Nathan & Luc Vo Van - Built with AI
+      </p>
     </div>
   )
 }

@@ -9,7 +9,7 @@
 
 ### User Story 1 - Play the Core Game Loop (Priority: P1)
 
-A player opens the game on their phone or PC browser, grants microphone access, and starts a new game. The bird appears on screen and immediately begins falling under gravity. The player makes a loud sound into their microphone and the bird flaps upward. Walls scroll toward the bird from the right side of the screen. The player modulates their voice volume to navigate the bird through the gaps between walls, collecting coins placed in each gap. The score increments with each coin collected. When the bird hits a wall, the game ends and the final score is displayed.
+A player opens the game on their phone or PC browser, grants microphone access, and starts a new game. The bird appears on screen and immediately begins falling under reduced gravity (0.6× earth). The player makes a loud sound into their microphone and the bird flaps upward. Walls scroll toward the bird from the right side of the screen. The player modulates their voice volume to navigate the bird through the gaps between walls, collecting coins placed in each gap. The score increments with each coin collected. When the bird hits a wall, the game ends and the final score is displayed.
 
 **Why this priority**: This is the entire core gameplay experience. Without it, there is no game. Every other story builds on top of this loop.
 
@@ -95,7 +95,7 @@ A player opens the game and sees a start screen with the game title, a brief ins
 - **FR-003**: A loud sound (above a configurable threshold) MUST apply an upward force to the bird, causing it to flap and rise.
 - **FR-004**: Silence (below threshold) MUST result in no upward force, allowing gravity to pull the bird downward with increasing velocity.
 - **FR-005**: A steady moderate volume (around threshold) MUST approximately counterbalance gravity, allowing the bird to hover.
-- **FR-006**: Gravity MUST be simulated realistically: the bird's downward velocity increases over time when no upward force is applied (constant gravitational acceleration).
+- **FR-006**: Gravity MUST be simulated at 0.6× earth gravity: the bird's downward velocity increases over time when no upward force is applied (constant gravitational acceleration), but at a reduced rate to improve playability.
 - **FR-007**: Obstacles MUST consist of paired top and bottom walls with a vertical gap between them, scrolling continuously from right to left at a consistent speed.
 - **FR-008**: The vertical position of each obstacle gap MUST be randomized within playable bounds.
 - **FR-009**: A spinning coin MUST be placed at the vertical center of each obstacle gap.
@@ -103,7 +103,7 @@ A player opens the game and sees a start screen with the game title, a brief ins
 - **FR-011**: Collision between the bird and any wall (top wall, bottom wall, or ground boundary) MUST immediately end the game.
 - **FR-012**: The game MUST explicitly request microphone permission from the user before gameplay begins.
 - **FR-013**: If microphone permission is denied or the required audio APIs are unavailable, the game MUST provide a fallback tap/click-to-flap control.
-- **FR-014**: The game MUST display a start screen with the title, brief instructions, and a "Start" button before gameplay begins.
+- **FR-014**: The game MUST display a start screen with the title, brief instructions, a "Start" button, and a copyright notice ("©️ 2026 Nathan & Luc Vo Van - Built with AI") at the bottom before gameplay begins.
 - **FR-015**: The game MUST display a game-over screen showing the final score and a "Play Again" button when the game ends.
 - **FR-016**: The game MUST be fully playable on both smartphones (portrait, touch) and desktop PCs (landscape, mouse/keyboard) without horizontal scrolling on viewports 320 px wide and above.
 - **FR-017**: The game MUST pause automatically when the browser tab loses focus and resume when focus returns.
