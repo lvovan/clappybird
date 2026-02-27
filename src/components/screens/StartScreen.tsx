@@ -8,7 +8,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
   return (
     <div className={styles.overlay}>
       <h1 className={styles.title}>Clappy Bird</h1>
-      <p className={styles.subtitle}>Clap to fly! \ud83d\udc4f</p>
+      <p className={styles.subtitle}>Clap to fly! 👏</p>
       <button className="game-btn game-btn-primary" onClick={onStart}>
         Start Game
       </button>
